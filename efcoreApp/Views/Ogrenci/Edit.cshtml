@@ -1,0 +1,45 @@
+@model Ogrenci
+
+<h2>Öğrenci Güncelle</h2>
+<hr>
+<div class="row">
+<div class="col-8">
+    <form asp-controller="Ogrenci" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="OgrenciId">
+        @* güncelle butonuna bastığımızda hangi öğrencinin güncelleneceğini ÖğrenciId ile belirlediğimizden 
+    <input type="hidden" asp-for="OgrenciId"> bunu yazıyoruz*@
+        <div class="mb-3">
+            <label asp-for="OgrenciAd" class="form-label">Öğrenci Ad</label>
+            <input asp-for="OgrenciAd" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="OgrenciSoyad" class="form-label">Öğrenci Soyad</label>
+            <input asp-for="OgrenciSoyad" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Mail" class="form-label">Mail</label>
+            <input asp-for="Mail" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Telefon" class="form-label">Telefon</label>
+            <input asp-for="Telefon" class="form-control">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-secondary">Kaydet</button>
+        </div>
+
+    </form>
+</div>
+<div class="col-4">
+<h4>Kurslar</h4>
+<hr>
+<ul>
+    
+    @foreach(var kkt in Model.KursKayitlari)
+    {
+        <li>@kkt.Kurs.Baslik - @kkt.KayitTarihi
+        </li>
+    }
+</ul>
+</div>
+</div>

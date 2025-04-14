@@ -1,0 +1,39 @@
+@model IEnumerable<Ogrenci>
+    @* IEnumerable<Ogrenci>: View'a gönderilecek modelin bir liste veya koleksiyon olacağını belirtir. Ogrenci sınıfından nesnelerin bir koleksiyonudur. *@
+
+<h2>Öğrenci Listesi</h2>
+<a href="/Ogrenci/Create" class="btn btn-sm btn-primary">Öğrenci Ekle</a>
+<hr>
+ <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width: 150px;">@Html.DisplayNameFor(m => m.OgrenciId)</th>
+            <th>@Html.DisplayNameFor(m => m.OgrenciAd)</th>
+            <th>@Html.DisplayNameFor(m => m.OgrenciSoyad)</th>
+            <th style="width: 180px;"></th>
+        </tr>
+        @*  <th>Öğrenci Id</th>
+            <th>Öğrenci Ad</th>
+            <th>Öğrenci Soyad</th> bu şekilde yazmak yerine HtmlHelper metotlarını kullanıyoruz. Bizi hataya karşı korur 
+            Model isimlerini almak için Html.DisplayNameFor kullanırız*@
+
+    </thead>
+    <tbody>
+         @foreach(var ogr in Model)
+        {
+             <tr>
+                <td>@Html.DisplayFor(modelItem => ogr.OgrenciId)</td>
+                <td>@Html.DisplayFor(modelItem => ogr.OgrenciAd)</td>
+                <td>@Html.DisplayFor(modelItem => ogr.OgrenciSoyad)</td>
+                <td>
+                <a asp-controller="Ogrenci" asp-action="Edit" asp-route-id="@ogr.OgrenciId" class="btn btn-sm btn-success" style="width: 70px;">Güncelle</a>
+                <a asp-controller="Ogrenci" asp-action="Delete" asp-route-id="@ogr.OgrenciId" class="btn btn-sm btn-danger" style="width: 70px;">Sil</a>
+                </td>
+             </tr>    
+             @* <td>@ogrenci.OgrenciId</td>
+                <td>@ogrenci.OgrenciAd</td>
+                <td>@ogrenci.OgrenciSoyad</td> burada da bu şekilde yazmak yerine HtmlHelper kullandık 
+                Model değerlerini almak için Html.DisplayFor kullanırız*@
+        }
+    </tbody>
+ </table>

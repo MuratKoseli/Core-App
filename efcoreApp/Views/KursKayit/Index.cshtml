@@ -1,0 +1,31 @@
+@model IEnumerable<KursKayit>
+
+<h2>Kurs Kayıt Listesi</h2>
+<a asp-action="Create" class="btn btn-sm btn-primary">Kurs Kaydı Oluştur</a>
+<hr>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width: 150px;" >@Html.DisplayNameFor(m => m.KayitId)</th>
+            <th >@Html.DisplayNameFor(m => m.Ogrenci.AdSoyad)</th> @*Join işlemi yapabildiğimiz için Ogrenci üzerinden Ogrenci.cs'te ki bütün prop lara erişebiliyoruz *@
+            <th>@Html.DisplayNameFor(m => m.Kurs.Baslik)</th> @*Join işlemi yapabildiğimiz için Kurs üzerinden Kurs.cs'te ki bütün prop lara erişebiliyoruz *@
+            <th style="width: 200px;"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var kk in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => kk.KayitId)</td>
+                <td>@Html.DisplayFor(modelItem => kk.Ogrenci.AdSoyad)</td>
+                <td>@Html.DisplayFor(modelItem => kk.Kurs.Baslik)</td>
+                <td>
+                <a asp-controller="KursKayit" asp-action="Edit" asp-route-id="@kk.KayitId" class="btn btn-sm btn-success" style="width: 70px;">Güncelle</a>
+                <a asp-controller="KursKayit" asp-action="Delete" asp-route-id="@kk.KayitId" class="btn btn-sm btn-danger" style="width: 70px;">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
